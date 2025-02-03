@@ -47,6 +47,9 @@ private:
     {
         RCLCPP_INFO(this->get_logger(), "Pointcloud visualiser getting a message" );
 
+        // only bother if there are subscribers
+        if( pub_->get_subscription_count() == 0 ) return;
+
         // Convert PointCloud2 ROS->PCL
         pcl::PointCloud<pcl::PointXYZ> cloud;
         pcl::fromROSMsg(*msg, cloud);
