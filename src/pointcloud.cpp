@@ -27,9 +27,9 @@ public:
         int height = this->declare_parameter<int>("height", 480);
 
         sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-            "/pointcloud_viz/cloud", 10, std::bind(&PointCloudViz::topic_callback, this, std::placeholders::_1));
+            "~/cloud", 10, std::bind(&PointCloudViz::topic_callback, this, std::placeholders::_1));
 
-        pub_ = this->create_publisher<sensor_msgs::msg::Image>("/pointcloud_viz/image", 10);
+        pub_ = this->create_publisher<sensor_msgs::msg::Image>("~/image", 10);
 
         image_ = cv::Mat(cv::Size(width, height), CV_8UC3);
 
